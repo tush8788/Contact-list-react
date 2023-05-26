@@ -1,29 +1,15 @@
 import React from "react";
 import ContactList from "./ContactList";
 
-// function App() {
-//   return (
-//     <div className="App">
-//       hello
-//     </div>
-//   );
-// }
-
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       contact: [{
-        id:1,
+        id: 1,
         name: "Test",
         phone: 1234567890
-      },
-      {
-        id:2,
-        name: "Test-1",
-        phone: 9987654321
-      },
-      ]
+      }]
     }
   }
 
@@ -35,6 +21,20 @@ class App extends React.Component {
         <ContactList contacts={this.state.contact} />
       </div>
     )
+  }
+
+  // coponent did mount 
+  componentDidMount() {
+    // fetch data 
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        this.setState({
+          contact: data
+        })
+      })
   }
 
 }
