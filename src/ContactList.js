@@ -1,5 +1,5 @@
 let ContactList = (props) => {
-    let { contacts } = props;
+    let { contacts , onDeleteContact} = props;
 
     return (
         <div>
@@ -8,6 +8,7 @@ let ContactList = (props) => {
                     <li key={data.id}> 
                         <p>{data.name}</p>
                         <p>{data.phone}</p>
+                        <p onClick={()=>{ onDeleteContact({data})}}>Delete</p>
                     </li>
                 ))}
             </ul>

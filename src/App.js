@@ -15,35 +15,49 @@ class App extends React.Component {
   }
 
   //add new contact
-  addNewContact = (e)=>{
+  addNewContact = (e) => {
 
-     e.preventDefault();
-    
-     let {contact} = this.state;
-   
-     // Read the form data
-     const form = e.target;
-     const formData = new FormData(form);
-   
-     // You can pass formData as a fetch body directly:
-     fetch('https://jsonplaceholder.typicode.com/users', { method: form.method, body: formData });
-   
-    //  // You can generate a URL out of it, as the browser does by default:
-    //  console.log(new URLSearchParams(formData).toString());
+    e.preventDefault();
+    //get state
+    let { contact } = this.state;
+
+    // Read the form data
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // You can pass formData as a fetch body directly:
+    fetch('https://jsonplaceholder.typicode.com/users', { method: form.method, body: formData });
+
     //  // You can work with it as a plain object.
-     const formJson = Object.fromEntries(formData.entries());
+    const formJson = Object.fromEntries(formData.entries());
+    //adding unique id 
+    formJson.id = Date.now();
 
-     formJson.id=Date.now();
-    
-     console.log(formJson); // (!) This doesn't include multiple select values
-     // Or you can get an array of name-value pairs.
-    //  console.log([...formData.entries()]);
-    
+    //add in front of array
     contact.unshift(formJson);
-    
+
+    //set state 
     this.setState({
       contact
     })
+  }
+
+  // delete contact
+  deleteContact = (contactid) =>{
+      let {data} = contactid;
+      // console.log(data);
+      const {contact} = this.state;
+
+
+      
+      let index = contact.indexOf(data);
+      
+      contact.splice(index,1);
+
+      this.setState({
+        contact
+      })
+      
   }
 
   //render
@@ -51,8 +65,8 @@ class App extends React.Component {
     return (
       <div className="App">
         hello
-        <NewContact onNewContact={this.addNewContact}/>
-        <ContactList contacts={this.state.contact} />
+        <NewContact onNewContact={this.addNewContact} />
+        <ContactList contacts={this.state.contact} onDeleteContact={this.deleteContact}/>
       </div>
     )
   }
@@ -72,4 +86,5 @@ class App extends React.Component {
   }
 
 }
+
 export default App;
