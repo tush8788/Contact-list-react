@@ -4,6 +4,7 @@ import NewContact from "./NewContact";
 import './App.css'
 
 class App extends React.Component {
+  // constructor 
   constructor() {
     super();
     this.state = {
@@ -17,8 +18,8 @@ class App extends React.Component {
 
   //add new contact
   addNewContact = (e) => {
-
     e.preventDefault();
+    
     //get state
     let { contact } = this.state;
 
@@ -29,8 +30,9 @@ class App extends React.Component {
     // You can pass formData as a fetch body directly:
     fetch('https://jsonplaceholder.typicode.com/users', { method: form.method, body: formData });
 
-    //  // You can work with it as a plain object.
+    // You can work with it as a plain object.
     const formJson = Object.fromEntries(formData.entries());
+    
     //adding unique id 
     formJson.id = Date.now();
 
@@ -45,12 +47,16 @@ class App extends React.Component {
 
   // delete contact
   deleteContact = (contactid) =>{
+      // get contact
       let {data} = contactid;
 
+      //get state 
       const {contact} = this.state;
 
+      //find index 
       let index = contact.indexOf(data);
       
+      //delete specific contact
       contact.splice(index,1);
 
       this.setState({
