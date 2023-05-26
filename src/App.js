@@ -1,4 +1,5 @@
 import React from "react";
+import ContactList from "./ContactList";
 
 // function App() {
 //   return (
@@ -8,22 +9,30 @@ import React from "react";
 //   );
 // }
 
-class App extends React.Component{
-  constructor(){
+class App extends React.Component {
+  constructor() {
     super();
-    this.state={
-      contact:[{
-        name:"Test",
-        phone:1234567890
-      }]
+    this.state = {
+      contact: [{
+        id:1,
+        name: "Test",
+        phone: 1234567890
+      },
+      {
+        id:2,
+        name: "Test-1",
+        phone: 9987654321
+      },
+      ]
     }
   }
 
   //render
-  render(){
+  render() {
     return (
       <div className="App">
-         hello
+        hello
+        <ContactList contacts={this.state.contact} />
       </div>
     )
   }
