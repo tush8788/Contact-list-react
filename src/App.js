@@ -1,6 +1,7 @@
 import React from "react";
 import ContactList from "./ContactList";
 import NewContact from "./NewContact";
+import './App.css'
 
 class App extends React.Component {
   constructor() {
@@ -45,11 +46,9 @@ class App extends React.Component {
   // delete contact
   deleteContact = (contactid) =>{
       let {data} = contactid;
-      // console.log(data);
+
       const {contact} = this.state;
 
-
-      
       let index = contact.indexOf(data);
       
       contact.splice(index,1);
@@ -64,9 +63,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        hello
-        <NewContact onNewContact={this.addNewContact} />
-        <ContactList contacts={this.state.contact} onDeleteContact={this.deleteContact}/>
+        <NewContact className="continerDiv" onNewContact={this.addNewContact} />
+        <ContactList className="continerDiv" contacts={this.state.contact} onDeleteContact={this.deleteContact}/>
       </div>
     )
   }
