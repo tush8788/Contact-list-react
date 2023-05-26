@@ -7,5 +7,5 @@
 3. then just "npm start"
 4. then go localhost:3000
 
-## this site is hosted on Netlify
-    
+## This site is hosted on Netlify
+    https://ephemeral-chebakia-3f10ac.netlify.app/
