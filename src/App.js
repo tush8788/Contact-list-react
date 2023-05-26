@@ -1,5 +1,6 @@
 import React from "react";
 import ContactList from "./ContactList";
+import NewContact from "./NewContact";
 
 class App extends React.Component {
   constructor() {
@@ -18,6 +19,7 @@ class App extends React.Component {
     return (
       <div className="App">
         hello
+        <NewContact/>
         <ContactList contacts={this.state.contact} />
       </div>
     )
